@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
 
 export default function Home()  {
   const [expenses, setExpenses] = useState([]);
@@ -83,6 +83,21 @@ export default function Home()  {
               </Pie>
               <Tooltip />
             </PieChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+      {expenses.length > 0 && (
+        <div className="mt-6 w-full max-w-lg bg-white p-6 shadow-lg rounded-xl border border-gray-300">
+          <h3 className="text-xl font-bold text-center mb-4">📊 Expense Breakdown</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
           </ResponsiveContainer>
         </div>
       )}
